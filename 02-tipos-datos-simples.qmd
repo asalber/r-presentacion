@@ -1,0 +1,323 @@
+---
+title: "Tipos de datos simples"
+subtitle: "Curso básico de R"
+author: "Alfredo Sánchez Alberca &nbsp; [{{< fa envelope >}}](mailto:asalber@ceu.es) [{{< fa brands twitter >}}](https://twitter.com/aprendeconalf) [{{< fa home >}}](https://aprendeconalf.es)"
+institute: Universidad CEU San Pablo
+logo: img/logos/sticker.png
+# title-slide-attributes:
+#     #data-background-color: black
+#     data-background-image: img/prompt-julia.png
+#     data-background-size: contain
+lang: es
+fig-align: center
+navigation-mode: vertical
+slide-level: 3
+---
+
+## Tipos de datos simples predefinidos
+
+- `numeric`: Es el tipo de los números. Secuencia de dígitos (pueden incluir el - para negativos y el punto como separador de decimales) que representan números.  Por ejemplo, `1`, `-2.0`, `3.1415` o `4.5e3`.  
+
+  - `integer`: Es el tipo de los números enteros.
+  
+  - `double`: Es el tipo de los números reales. 
+
+- `character`: Es el tipo de las cadenas de caracteres. Secuencia de caracteres alfanuméricos que representan texto. Se escriben entre comillas simples o dobles. Por ejemplo `"Hola"` o `'Hola'`.  
+
+- `logical`: Es el tipo de los booleanos. Puede tomar cualquiera de los dos valores lógicos `TRUE` (verdadero) o `FALSE` (falso). También se pueden abreviar como `T` o `F`.  
+
+----
+
+- `NA`: Se utiliza para representar datos desconocidos o perdidos.
+
+- `NULL`: Se utiliza para representar la ausencia de datos. La principal diferencia con `NA` es que `NULL` aparece cuando se intenta acceder a un dato que no existe, mientras que `NA` se utiliza para representar explícitamente datos perdidos en un estudio. 
+
+---- 
+
+## Identificación del tipo de dato
+
+- `class(x)`: Devuelve el tipo del dato `x`.
+
+:::{#exm-tipos-datos}
+```{r}
+class(3.1415)
+class(-1)
+class("Hola")
+class(TRUE)
+class(NA)
+class(NULL)
+```
+:::
+
+----
+
+- `is.numeric(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `numeric`. 
+- `is.double(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `double`.
+- `is.integer(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `integer`. 
+- `is.character(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `character`. 
+- `is.logical(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `logical`. 
+- `is.na(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `NA`. 
+- `is.null(x)`: Devuelve el booleano `TRUE` si `x` es del tipo `NULL`.
+
+:::{#exm-tipos-datos-2}
+```{r}
+is.double(3.1415)
+is.character(TRUE)
+``` 
+:::
+
+## Conversión de tipos
+
+- `as.numeric(x)`: Convierte el dato de `x` al tipo `numeric` siempre que sea posible o tenga sentido la conversión. El valor lógico `TRUE` se convierte en 1 y el `FALSE` en 0.
+- `as.integer(x)`: Convierte el dato de `x` al tipo `integer` siempre que sea posible o tenga sentido la conversión.
+- `as.character(x)`: Convierte el tipo de dato de `x` al tipo `character` simplemente añadiendo comillas.
+- `as.logical(x)`: Convierte el tipo de dato de `x` al tipo lógico. Para datos numéricos, el 0 se convierte en `FALSE` y cualquier otro número en `TRUE`. Para cadenas se obtiene `NA` excepto para las cadenas `"TRUE"` y `"true"` que se convierten a `TRUE` y las cadenas `"FALSE"` y `"false"` que se convierten a `FALSE`.
+
+El tipo `NA` no se puede convertir a ningún otro tipo pues representa la ausencia del dato. Lo mismo ocurre con `NULL`.
+
+## Operaciones con números
+
+- Operaciones aritméticas
+- Operaciones relacionales
+- Funciones y constantes numéricas
+
+### Operadores aritméticos
+
+- `x + y`: Devuelve la suma de `x` e `y`.
+- `x - y`: Devuelve la resta de `x` e `y`. 
+- `x * y`: Devuelve el producto de `x` e `y`.
+- `x / y`: Devuelve el cociente de `x` e `y`.  
+- `x %% y`: Devuelve el resto de la división entera de `x` e `y`.  
+- `x ^ y`: Devuelve la potencia `x` elevado a `y`.
+
+---
+
+:::{#exm-operadores-aritmeticos}
+A continuación se muestran varios ejemplos de operaciones aritméticas.
+```{r}
+2 + 3
+5 * -2
+5 / 2
+1 / 0
+5 %% 2
+2 ^ 3
+```
+:::
+
+### Operadores relacionales 
+
+Comparan dos números y devuelven un valor lógico.
+
+- `x == y`: Devuelve `TRUE` si el número `x` es igual que el número `y`, y `FALSE` en caso contrario.
+- `x > y`: Devuelve `TRUE` si el número `x` es mayor que el número `y`, y `FALSE` en caso contrario.
+- `x < y`: Devuelve `TRUE` si el número `x` es menor que el número `y`, y `FALSE` en caso contrario.
+- `x >= y`: Devuelve `TRUE` si el número `x` es mayor o igual que el número `y`, y `FALSE` en caso contrario.
+- `x <= y`: Devuelve `TRUE` si el número `x` es menor o igual a que el número `y,` y `FALSE` en caso contrario.
+- `x != y`: Devuelve `TRUE` si el número `x` es distinto del número `y`, y `FALSE` en caso contrario.
+
+---
+
+:::{#exm-operadores-relacionales}
+```{r}
+3 == 3
+3.1 <= 3
+4 > 3
+-1 != 1
+5 %% 2
+2 ^ 3
+(2 + 3) ^ 2
+```
+:::
+
+---
+
+### Funciones y constantes numéricas
+
+- `pi`: Devuelve el número $\pi$.
+- `sqrt(x)`: Devuelve la raíz cuadrada de `x`.
+- `abs(x)`: Devuelve el valor absoluto de `x`.
+- `round(x, n)`: Devuelve el redondeo de `x` a `n` decimales.
+- `exp(x)`: Devuelve la exponencial de `x` ($e^x$).
+- `log(x)`: Devuelve el logaritmo neperiano de `x`.
+- `sin(x)`: Devuelve el seno del ángulo `x` en radianes.
+- `cos(x)`: Devuelve el coseno del ángulo `x` en radianes.
+- `tan(x)`: Devuelve la tangente del ángulo `x` en radianes.
+- `asin(x)`: Devuelve el arcoseno de `x`.
+- `acos(x)`: Devuelve el arcocoseno de `x`.
+- `atan(x)`: Devuelve el arcotangente de `x`.
+
+---
+
+:::{#exm-funciones-numéricas}
+```{r}
+sqrt(9)
+abs(-1)
+round(1.7)
+exp(1)
+log(exp(1))
+cos(pi)
+asin(1)
+```
+:::
+
+## Operaciones con cadenas
+
+- Funciones de cadenas
+- Operadores relacionales
+
+### Funciones de cadenas
+
+- `nchar(c)`: Devuelve el número de caracteres de la cadena.
+- `paste(x, y, ..., sep=s)`: Concatena las cadenas `x`, `y`, etc. separándolas por la cadena `s`. Por defecto la cadena de separación es un espacio en blanco.
+- `substr(c, start=i, stop=j)`: Devuelve la subcadena de la cadena `c` desde la posición `i` hasta la posición `j`. El primer carácter de una cadena ocupa la posición 1.
+- `tolower(c)`: Devuelve la cadena que resulta de convertir la cadena `c` a minúsculas.
+- `toupper(c)`: Devuelve la cadena que resulta de convertir la cadena `c` a mayúsculas.
+
+---
+
+:::{#exm-operaciones-cadenas}
+A continuación se muestran varios ejemplos de operaciones con cadenas de texto.
+```{r}
+nchar("Me gusta R")
+paste("Me", "gusta", "R")
+paste("Me", "gusta", "R", sep = "-")
+paste("Me", "gusta", "R", sep = "")
+substr("Me gusta R", 4, 8)
+tolower("Me gusta R")
+toupper("Me gusta R")
+```
+:::
+
+### Operaciones relacionales de cadenas
+
+- `x == y` : Devuelve `TRUE` si la cadena `x` es igual que la cadena `y`, y `FALSE` en caso contrario.
+- `x > y` : Devuelve `TRUE` si la cadena `x` sucede a la cadena `y`, y `FALSE` en caso contrario.
+- `x < y` : Devuelve `TRUE` si la cadena `x` antecede a la cadena `y`, y `FALSE` en caso contrario.
+- `x >= y` : Devuelve `TRUE` si la cadena `x` sucede o es igual a la cadena `y`, y `FALSE` en caso contrario.
+- `x <= y` : Devuelve `TRUE` si la cadena `x` antecede o es igual a la cadena `y`, y `FALSE` en caso contrario.
+- `x != y` : Devuelve `TRUE` si la cadena `x` es distinta de la cadena `y`, y `FALSE` en caso contrario.
+
+<i class="fa fa-exclamation-triangle" style="color:red;"></i> _Utilizan el orden alfabético, las minúsculas van antes que las mayúsculas, y los números antes que las letras._
+
+---
+
+:::{#exm-operaciones-comparacion-cadenas}
+```{r}
+"R" == "R"
+"R" == "r"
+"uno" < "dos"
+"A" > "a"
+"" < "R"
+```
+:::
+
+## Operaciones con datos lógicos o booleanos
+
+R asocia a `TRUE` el valor 1 y a `FALSE` el valor 0.
+
+- `x == y`: Devuelve `TRUE` si los booleanos `x` y `y` son iguales, y `FALSE` en caso contrario.
+- `x < y`: Devuelve `TRUE` si el booleano `x` es menor que el booleano `y`, y `FALSE` en caso contrario. 
+- `x <= y`: Devuelve `TRUE` si el booleano `x` es menor o igual que el booleano `y`, y `FALSE` en caso contrario. 
+- `x > y`: Devuelve `TRUE` si el booleano `x` es mayor que el booleano `y`, y `FALSE` en caso contrario. 
+- `x >= y`: Devuelve `TRUE` si el booleano `x` es mayor o igual que el booleano `y`, y `FALSE` en caso contrario.
+- `x != y`: Devuelve `TRUE` si el booleano `x` es distinto que el booleano `y`, y `FALSE` en caso contrario.
+
+---
+
+- Negación `!b`: Devuelve `TRUE` si el booleano `b` es `FALSE`, y `FALSE` si es `TRUE`.
+- Conjunción `x & y`: Devuelve `TRUE` si los booleanos `x`, y `y` son `TRUE` y `FALSE` en caso contrario.
+- Disyunción `x | y`: Devuelve `TRUE` si alguno de los booleanos `x` o `y` son `TRUE`, y `FALSE` en caso contrario.
+
+### Tabla de verdad {-}
+
+|   `x`   |   `y`   | `!x` | `x & y` | `x | y` |
+| :-----: | :-----: | :-----: | :-------: | :------: |
+| `FALSE` | `FALSE` | `TRUE`  |  `FALSE`  | `FALSE`  |
+| `FALSE` | `TRUE`  | `TRUE`  |  `FALSE`  |  `TRUE`  |
+| `TRUE`  | `FALSE` | `FALSE` |  `FALSE`  |  `TRUE`  |
+| `TRUE`  | `TRUE`  | `FALSE` |  `TRUE`   |  `TRUE`  |
+
+---
+
+:::{#exm-operadores-logicos}
+```{r}
+!TRUE
+FALSE | TRUE
+FALSE | FALSE
+TRUE & FALSE
+TRUE & TRUE
+```
+:::
+
+## Variables 
+
+Una variable es un identificador ligado a un valor.
+
+:::{.callout-note}
+## Reglas para nombrar variables
+
+- Comienzan siempre por una letra o punto, seguida de otras letras, números, puntos o guiones bajos. Si empieza por punto no puede seguirle un número.
+- No se pueden utilizarse palabras reservadas del lenguaje.
+:::
+
+Las variables no tienen asociado un tipo de dato y no es necesario declararlas antes de usarlas (tipado dinámico).
+
+### Asignación de un valor a una variable
+
+- `x <- y`: Asigna el valor `y` a la variable `x`.
+
+También se puede utilizar el operador `=`.
+
+Se puede crear una variable sin ningún valor asociado asignándole el valor `NULL`.
+
+Una vez definida una variable, puede utilizarse en cualquier expresión donde tenga sentido el valor que tiene asociado.
+
+---
+
+:::{#exm-variables}
+A continuación se muestran varios ejemplos de asignaciones de valores a variables.
+```{r}
+x <- 3
+x
+y <- x + 2
+y
+# Valor no definido
+x <- NULL
+x
+# Eliminar y
+rm(y)
+# A partir de aquí, una llamada a y produce un error.
+```
+:::
+
+## Prioridad de los operadores
+
+|       |                        |
+| :---: | :--------------------: |
+|   1   | Funciones predefinidas |
+|   2   |       Potencias (`^`)   |     |
+|   3   | Productos y cocientes (`*`, `/`, `%%`) |
+|   4   |     Sumas y restas  (`+`, `-`)    |
+|   5    |  Operadores relacionales (`==`, `>`, `<`, `>=`, `<=`, `!=`) |
+| 6 | Negación (`!`) |
+| 7 | Conjunción (`&`) |
+| 8 | Disyunción (`|`) |
+| 9 | Asignación (`<-`) |
+
+Se puede saltar el orden de evaluación utilizando paréntesis `( )`.
+
+---
+
+:::{#exm-prioridad-evaluacion}
+A continuación se muestran varios ejemplos de evaluación de expresiones.
+```{r}
+4 + 8 / 2 ^ 2
+4 + (8 / 2) ^ 2
+(4 + 8) / 2 ^ 2
+(4 + 8 / 2) ^ 2
+x <- 2 
+y <- 3
+z <- ! x + 1 > y & y * 2  < x ^ 3
+z
+```
+:::
