@@ -13,6 +13,8 @@ Presentaciones del [manual de R](https://aprendeconalf.es/manual-r/).
 1. [Introducción](01-introduccion.html).
 2. [Tipos de datos simples](02-tipos-datos-simples.html).
 3. [Tipos de datos estructurados](03-tipos-datos-estructurados.html)
+4. [Estructuras de control](04-estructuras-control.html)
+5. [Funciones](05-funciones.html)
 
 ## Licencia
 
