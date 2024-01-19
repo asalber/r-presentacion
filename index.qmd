@@ -16,6 +16,7 @@ Presentaciones del [manual de R](https://aprendeconalf.es/manual-r/).
 4. [Estructuras de control](04-estructuras-control.html)
 5. [Funciones](05-funciones.html)
 6. [Preprocesamiento](06-preprocesamiento.html)
+7. [Gráficos](07-graficos.html)
 
 ## Licencia
 
